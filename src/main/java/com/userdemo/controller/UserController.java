@@ -2,7 +2,6 @@ package com.userdemo.controller;
 
 import com.userdemo.mapper.UserMapper;
 import com.userdemo.model.User;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,9 +53,8 @@ public class UserController {
 
     @RequestMapping("/update")
     @ResponseBody
-    public List<User> update(HttpServletRequest request,@RequestParam("name") String userName, @RequestParam("age") int userAge) {
-        String userId = request.getParameter("id");
-        if (userId == null || userId.equals("")) {
+    public List<User> update(@RequestParam("id")String userId,@RequestParam("name") String userName, @RequestParam("age") int userAge) {
+        if (userId.equals("")) {
             add(userName, userAge);
         }else{
             user.setUserId(Integer.parseInt(userId));
