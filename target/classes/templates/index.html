@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>UserManage</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="/js/codebase/dhtmlxgrid.css"/>
+    <script type="text/javascript" src="/js/codebase/dhtmlxgrid.js"></script>
+    <script type="text/javascript" src="/js/operation.js"></script>
+</head>
+<body>
+<div id="gridbox" style="width:300px;height:400px;">
+</div>
+<button type="button" onclick="doAdd()">Add</button>
+<button type="button" onclick="doDelete()">Delete</button>
+<script>
+    mygrid = new dhtmlXGridObject("gridbox");
+    mygrid.setImagePath("/js/codebase/imgs/");
+    mygrid.setHeader("id,name,age");//the headers of columns
+    mygrid.setInitWidths("70,150,80");          //the widths of columns
+    mygrid.setColAlign("left,left,left");       //the alignment of columns
+    mygrid.setColTypes("ro,ed,ed");                //the types of columns
+    mygrid.setColSorting("int,str,int");          //the sorting types
+    mygrid.init();      //finishes initialization and renders the grid on the page
+    findAll();
+    mygrid.attachEvent("onEnter",onEnter);
+</script>
+</body>
+</html>
