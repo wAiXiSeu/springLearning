@@ -22,6 +22,9 @@ public class UserController {
     @Autowired
     UserMapper userMapper;
 
+    @Autowired
+    User user;
+
     @RequestMapping("/")
     public String welcome(){
         return "index";
@@ -36,7 +39,6 @@ public class UserController {
     @RequestMapping("/add")
     @ResponseBody
     public List<User> add(@RequestParam("name") String userName,@RequestParam("age") int userAge){
-        User user = new User();
         user.setUserName(userName);
         user.setUserAge(userAge);
         userMapper.add(user);
@@ -57,7 +59,9 @@ public class UserController {
         if (userId == null || userId.equals("")) {
             add(userName, userAge);
         }else{
-            User user = new User(Integer.parseInt(userId), userName, userAge);
+            user.setUserId(Integer.parseInt(userId));
+            user.setUserName(userName);
+            user.setUserAge(userAge);
             userMapper.update(user);
         }
         return userMapper.findAll();

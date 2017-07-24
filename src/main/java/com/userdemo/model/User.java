@@ -1,11 +1,14 @@
 package com.userdemo.model;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author: wAiXi
  * @Date: 2017/7/21
  * @Time: 15:56
  * @Description:
  */
+@Component
 public class User {
     private int userId;
     private String userName;
