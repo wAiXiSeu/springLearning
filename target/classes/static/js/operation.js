@@ -67,3 +67,21 @@ function onEnter() {
     })
 
 }
+
+function doSearch(content) {
+    $.ajax({
+        type:'post',
+        data:{'content':content},
+        dataType:'json',
+        url:'search',
+        success:function (data) {
+            mygrid.clearAll();
+            for (var i = 0; i < data.length; i++) {
+                mygrid.addRow(i + 1, [data[i].userId, data[i].userName, data[i].userAge]);
+            }
+        },
+        error:function () {
+            alert('search fail');
+        }
+    })
+}

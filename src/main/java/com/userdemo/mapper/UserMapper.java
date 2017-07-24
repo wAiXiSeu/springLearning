@@ -28,4 +28,10 @@ public interface UserMapper {
     @Update("update user set userName=#{userName},userAge=#{userAge}" +
             " where userId=#{userId}")
     void update(User user);
+
+    @Select("select * from user where userName like #{content}")
+    List<User> findByName(String content);
+
+    @Select("select * from user where userAge like #{content}")
+    List<User> findByAge(String content);
 }
